@@ -1,7 +1,9 @@
-{
-  // Otras configuraciones de ESLint
+{ // Otras configuraciones de ESLint
   "rules": {
     // Deshabilitar la regla @typescript-eslint/no-empty-interface
-    "@typescript-eslint/no-empty-interface": "off"
+    "@typescript-eslint/no-empty-interface": "off",
+    "no-reserved-keys": "off"
   }
 }
+
+ 
