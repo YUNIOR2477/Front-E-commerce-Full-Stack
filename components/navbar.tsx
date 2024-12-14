@@ -1,16 +1,12 @@
 "use client";
-import {
-  BaggageClaim,
-  CircleUserRound,
-  Heart,
-  ShoppingCart,
-} from "lucide-react";
+import { BaggageClaim, Heart, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import MenuList from "./menu-list";
 import ItemsMenuMobile from "./menu-list-mobile";
 import ToggleTheme from "./toggle-theme";
 import { useCart } from "@/hooks/use-cart";
 import { useLovedProducts } from "@/hooks/use-loved-products";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   const router = useRouter();
@@ -25,30 +21,45 @@ const Navbar = () => {
       <div className="items-center justify-between hidden sm:flex">
         <MenuList />
       </div>
-      <div className="flex sm:hidden">
+      <div className="flex sm:hidden mr-2">
         <ItemsMenuMobile />
       </div>
-      <div className="flex items-center justify-between gap-2 sm:gap-7">
+      <div className="flex items-center justify-between gap-2 sm:gap-4">
         {cart.items.length === 0 ? (
-          <ShoppingCart
-            strokeWidth="1"
-            className="cursor-pointer "
+          <Button
+            variant={"outline"}
+            size={"lg"}
             onClick={() => router.push("/cart")}
-          />
+          >
+            <ShoppingCart
+              strokeWidth="2"
+              className="cursor-pointer "
+              onClick={() => router.push("/cart")}
+            />
+          </Button>
         ) : (
-          <div className="flex gap-1" onClick={() => router.push("/cart")}>
+          <Button
+            variant={"outline"}
+            size={"lg"}
+            className="flex gap-1"
+            onClick={() => router.push("/cart")}
+          >
             <BaggageClaim strokeWidth={1} className="cursor-pointer" />
             <span>{cart.items.length}</span>
-          </div>
+          </Button>
         )}
-        <Heart
-          strokeWidth="1"
-          className={`cursor-pointer ${
-            lovedItems.length > 0 && "fill-black dark:fill-white"
-          }`}
+        <Button
+          variant="outline"
+          size="icon"
           onClick={() => router.push("/loved-products")}
-        />
-        <CircleUserRound strokeWidth="1" className="cursor-pointer" />
+        >
+          <Heart
+            strokeWidth="2"
+            className={`cursor-pointer ${
+              lovedItems.length > 0 && "fill-black dark:fill-white"
+            }`}
+          />
+        </Button>
         <ToggleTheme />
       </div>
     </div>

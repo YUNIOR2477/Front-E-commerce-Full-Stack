@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { formatPrice } from "@/lib/formatPrice";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 
 const Page = () => {
   const [search, setSearch] = useState("");
@@ -25,7 +26,7 @@ const Page = () => {
   }
   return (
     <div className="md:max-w-7xl max-w-6xl px-4 py-11 mx-auto sm:px-6 lg:px-8">
-           <h1 className="mb-7 text-3xl font-bold text-center">
+      <h1 className="mb-7 text-3xl font-bold text-center">
         Solicite la informacion de su pedido
       </h1>
       <div className="flex max-w-4xl items-center space-x-2 m-auto p-4">
@@ -33,9 +34,9 @@ const Page = () => {
       </div>
       <div className="grid lg:grid-cols-2 lg:gap-5 mt-4">
         <div className="lg:shadow-2xl lg:pl-3 rounded-lg">
-          {totalPrices === 0 && search !== "" &&(
+          {totalPrices === 0 && search !== "" && (
             <p className="lg:mt-20 md:text-lg text-primary mb-3 lg-3 text-center">
-            🚫 Codigo del pedido incorrecto, ingrese un codigo valido 🚫
+              🚫 Codigo del pedido incorrecto, ingrese un codigo valido 🚫
             </p>
           )}
           <div>
@@ -51,7 +52,7 @@ const Page = () => {
               ))}
           </div>
         </div>
-        <div className="w-full lg:flex lg:items-center">
+        <div className=" lg:flex lg:items-center justify-center md:-mt-2 -ml-2">
           <Card className="p-6 lg:w-full rounded-lg shadow-black dark:shadow-white bg-slate-100 dark:bg-slate-900">
             <p className="mb-3 text-lg font-semibold">Tu pedido</p>
             <Separator className="bg-slate-500 dark:bg-slate-200" />
@@ -60,7 +61,32 @@ const Page = () => {
               <p>{formatPrice(totalPrices)}</p>
             </div>
             <div className="flex items-center justify-center w-full mt-3">
-              <Button className="w-full">Cancelar pedido</Button>
+              <Button
+                onClick={() => {
+                  if (totalPrices !== 0 && search !== "") {
+                    setSearch("");
+                    const productCodeInput = document.getElementById(
+                      "productCode"
+                    ) as HTMLInputElement;
+                    if (productCodeInput) {
+                      productCodeInput.value = "";
+                    }
+                    toast({
+                      title:
+                        "Tu peticion sera procesada, uno de nuestros acesores se comunicaran contigo",
+                      variant: "default",
+                    });
+                  } else {
+                    toast({
+                      title: "Debes digitar correctamente el codigo de tu pedido",
+                      variant: "destructive",
+                    });
+                  }
+                }}
+                className="w-full"
+              >
+                Cancelar pedido
+              </Button>
             </div>
           </Card>
         </div>

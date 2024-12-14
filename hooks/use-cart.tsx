@@ -2,14 +2,12 @@ import { toast } from "@/components/ui/use-toast";
 import { ProductType } from "@/types/product";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { create } from "zustand";
-
 interface CartStore {
   items: ProductType[];
   addItem: (data: ProductType) => void;
   removeItem: (id: number) => void;
   removeAll: () => void;
 }
-
 export const useCart = create(
   persist<CartStore>(
     (set, get) => ({
@@ -20,27 +18,20 @@ export const useCart = create(
         if (existingItem) {
           return toast({
             title: "Producto existente en el carrito 🚫",
-            variant:"destructive",
+            variant: "destructive",
           });
         }
-        set({
-          items: [...get().items, data],
-        });
-        toast({
-          title: "Producto añadido al carrito 🎁",
-        });
+        set({ items: [...currentItems, data] });
+        toast({ title: "Producto añadido al carrito 🎁" });
       },
       removeItem: (id: number) => {
-        set({ items: [...get().items.filter((item) => item.id !== id)] });
-        toast({
-          title: "Producto eliminado del carrito ❌",
-        });
+        set({ items: get().items.filter((item) => item.id !== id) });
+        toast({ title: "Producto eliminado del carrito ❌" });
       },
-      removeAll: () => set({ items: [] }),
+      removeAll: () => {
+        set({ items: [] });
+      },
     }),
-    {
-      name: "cart-storage",
-      storage: createJSONStorage(() => localStorage),
-    }
+    { name: "cart-storage", storage: createJSONStorage(() => localStorage) }
   )
 );

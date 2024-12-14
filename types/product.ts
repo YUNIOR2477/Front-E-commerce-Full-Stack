@@ -11,7 +11,7 @@ export type ProductType = {
   discountNumber: number;
   material: string;
   images: [{ id: number; url: string; caption: string }];
-  value:string
+  value: string;
   category: {
     id: number;
     slug: string;

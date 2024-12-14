@@ -18,7 +18,7 @@ interface CarouselProductProps {
 const CarouselProduct = (props: CarouselProductProps) => {
   const { images } = props;
   return (
-    <div className="px-6 mb-4">
+    <div className="mb-4">
       <Carousel>
         <CarouselContent>
           {images.map((image) => (

@@ -15,7 +15,7 @@ export default function Page() {
   }
   return (
     <div className="max-w-7xl py-4 mx-auto sm:py-10 my-6 sm:px-24 shadow-2xl rounded-lg">
-      <div className="grid md:grid-cols-2 w-[100%]">
+      <div className="grid md:grid-cols-2 w-full">
         <div>
           <CarouselProduct images={result[0].images}/>
         </div>

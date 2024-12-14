@@ -31,7 +31,6 @@ const ComboBoxColors = (props: { images: any; value: any; setValue: any }) => {
   const [open, setOpen] = React.useState(false);
   const { value, setValue } = props;
   const { images }: ComboBoxColorsProps = props;
-  console.log(value);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -39,7 +38,7 @@ const ComboBoxColors = (props: { images: any; value: any; setValue: any }) => {
           name="color"
           role="combobox"
           aria-expanded={open}
-          className="w-[110px] justify-between bg-black dark:bg-slate-300 text-white dark:text-black "
+          className="md:w-[110px] md:h-[30px] w-[100px] h-[30px] justify-center bg-slate-900 dark:bg-slate-100 text-white dark:text-black "
         >
           {value
             ? images.find((image) => image.caption === value)?.caption

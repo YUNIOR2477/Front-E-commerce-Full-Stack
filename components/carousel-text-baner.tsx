@@ -15,7 +15,7 @@ const CarouselTextBanner = () => {
   return (
     <div>
       <Carousel
-        className="w-full h-[40px] md:w-full max-w-7xl mx-auto py-4 md:h-[100px] mb-2"
+        className="w-full h-[65px] md:w-full  md:h-[150px] mb-6 md:mb-1"
         plugins={[
           Autoplay({
             delay: 3000,
@@ -29,14 +29,14 @@ const CarouselTextBanner = () => {
               return (
                 <CarouselItem
                   key={discount.id}
-                  onClick={() => router.push(`/discount/${discount.slug}`)}
+                  onClick={() => router.push(discount.slug)}
                   className="cursor-pointer"
                 >
                   <div>
                     <Card className="shadow-none border-none bg-transparent">
                       <CardContent className="flex flex-col justify-center items-center text-center">
                         <img
-                          className="h-[35px]  object-cover md:h-full w-full rounded-md border-2"
+                          className="h-[65px] object-cover md:h-full w-full rounded-md border-2"
                           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${discount.image.url}`}
                           alt="Image discount"
                         ></img>

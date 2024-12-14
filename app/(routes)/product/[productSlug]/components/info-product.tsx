@@ -7,7 +7,9 @@ import { formatPrice } from "@/lib/formatPrice";
 import { ProductType } from "@/types/product";
 import {Heart } from "lucide-react";
 import React from "react";
-import ComboBoxColors from "./comboBox-colors";
+
+import { toast } from "@/components/ui/use-toast";
+import ComboBoxColors from "@/components/comboBox-colors";
 
 export type InfoProductProps = {
   product: ProductType;
@@ -20,10 +22,13 @@ const InfoProduct = (props: InfoProductProps) => {
   const [value, setValue] = React.useState("");
   const discount= (100-product.discountNumber)/100
   return (
-    <Card className="p-6 mx-6 sm:mx-0 rounded-lg shadow-black dark:shadow-white bg-slate-100 dark:bg-slate-900 w-[100%]">
+    <Card className="p-6 md:ml-8 rounded-lg shadow-black dark:shadow-white bg-slate-100 dark:bg-slate-900 w-[100%]">
       <div className="justify-between mb-3 flex">
         <h1 className="text-2xl mb-2">{product.productName}</h1>
         <div className="flex items-center justify-end gap-3">
+        <p className="px-2 py-1 text-xs font-serif text-white rounded-lg bg-black dark:bg-white dark:text-black w-fit">
+            {product.category.categoryName}
+          </p>
           <p className="px-2 py-1 text-xs font-serif text-white rounded-lg bg-black dark:bg-white dark:text-black w-fit">
             {product.material}
           </p>
@@ -47,8 +52,14 @@ const InfoProduct = (props: InfoProductProps) => {
       </div>
       <div className="flex items-center gap-5">
         <Button className="w-full" onClick={() => {
+          if(value!==""){
           product.value=value
-          addItem(product)}}>
+          addItem(product)}else{
+            toast({
+              title: "Debes seleccionar un color para tu producto 🎨",
+              variant:"destructive",
+            });
+          }}}>
           Añadir al carrito
         </Button>
         <Heart

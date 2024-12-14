@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
-import { Store } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 
 const BannerProducts = () => {
   const router = useRouter();
@@ -14,11 +14,11 @@ const BannerProducts = () => {
         </h4>
         <p className="my-2 text-lg">Moda, Calidad y Economia...</p>
         <Button
-          onClick={() => router.push("/")}
-          className=" font-serif font-semibold text-center md:w-40"
+          onClick={() => router.push("/all-products")}
+          className=" font-serif font-semibold text-center "
         >
-          Tienda
-          <Store />
+          Ver todos nuestros productos
+          <ShoppingBag />
         </Button>
       </div>
       <div className="h-[250px] bg-cover md:h-[400px] bg-[url('/slider-image.png')] bg-center w-full mt-14"></div>

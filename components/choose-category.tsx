@@ -9,7 +9,7 @@ const ChooseCategory = () => {
   const { result,loading }: ResponseType = useGetCategories();
   return (
     <div className="max-w-7xl py-2 mx-auto sm:py-16 sm:px-24">
-      <h3 className="px-1 pb-4 text-3xl sm:pb-8">
+      <h3 className="px-1 pb-4 text-4xl sm:pb-8 text-center font-bold">
         Elige tu categoria favorita
       </h3>
       <div className="grid gap-5 lg:grid-cols-5 grid-cols-3 p-3 md:p-0">

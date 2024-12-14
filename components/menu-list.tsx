@@ -14,10 +14,21 @@ import {
 import { useGetCategories } from "@/api/getProducts";
 import { CategoryType } from "@/types/category";
 import { ResponseType } from "@/types/response";
-import { Info } from "lucide-react";
+import { Info, LogOut, UserCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const MenuList = () => {
   const { result, loading }: ResponseType = useGetCategories();
+  const getFromLocalStorage = (key: string) => {
+    if (typeof window !== "undefined") {
+      const value = localStorage.getItem(key);
+      return value ? JSON.parse(value) : null;
+    }
+    return null;
+  };
+  const user = getFromLocalStorage("user");
+  const username = user ? user.username : null;
+  const router = useRouter();
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -27,7 +38,10 @@ const MenuList = () => {
             <ul className="grid gap-3 p-6 md:w-[500px] lg:w-[650px] lg:grid-cols-[1fr_.75fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
-                  <div className="flex h-full w-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md cursor-default">
+                  <div
+                    onClick={() => router.push("/about-us")}
+                    className="flex h-full w-full select-none flex-col justify-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md cursor-pointer"
+                  >
                     <div className="mb-2 mt-4 text-lg font-medium">
                       Bienvenidos a Tienda YUNIOR2477
                     </div>
@@ -79,8 +93,35 @@ const MenuList = () => {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Link href="/shopping" legacyBehavior passHref>
-            <NavigationMenuLink className="flex p-2 bg-slate-200 dark:bg-slate-900 rounded-lg text-sm font-semibold">
-            <Info className="mr-1"/>Compras
+            <NavigationMenuLink className="flex p-2 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md">
+              <Info className="mr-1" />
+              Compras
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link
+            href={username === null ? "/login" : ""}
+            legacyBehavior
+            passHref
+          >
+            <NavigationMenuLink className="flex p-2 hover:bg-green-600 dark:hover:bg-green-600  rounded-lg text-sm font-semibold">
+              <UserCircle className="mr-2" />
+              {username === null ? "Iniciar Sesión" : username}
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem className="">
+          <Link href="/logout" legacyBehavior passHref>
+            <NavigationMenuLink
+              className={
+                username === null
+                  ? "hidden"
+                  : "flex p-2 hover:bg-red-700 dark:hover:bg-red-700 rounded-lg text-sm font-semibold"
+              }
+            >
+              Cerrar sesion
+              <LogOut className="ml-2" />
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

@@ -5,12 +5,12 @@ const dataFooter = [
   {
     id: 1,
     name: "Sobre nosotros",
-    link: "#",
+    link: "/about-us",
   },
   {
     id: 2,
     name: "Productos",
-    link: "#",
+    link: "/all-products",
   },
   {
     id: 3,
@@ -19,8 +19,13 @@ const dataFooter = [
   },
   {
     id: 4,
+    name: "Terminos y condiciones",
+    link: "/terms&conditions",
+  },
+  {
+    id: 5,
     name: "Politica de privacidad",
-    link: "#",
+    link: "/privacy-policy",
   },
 ];
 
@@ -45,9 +50,7 @@ const Footer = () => {
         </div>
         <Separator className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          &copy; 2024
-          <Link href="#"> YUNIOR2477 </Link>
-          Todos los derechos reservados
+          &copy; 2024 YUNIOR2477 - Todos los derechos reservados
         </span>
       </div>
     </footer>
