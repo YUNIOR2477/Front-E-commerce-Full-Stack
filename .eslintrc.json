@@ -1,9 +1,15 @@
-{ // Otras configuraciones de ESLint
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended"
+  ],
   "rules": {
-    // Deshabilitar la regla @typescript-eslint/no-empty-interface
     "@typescript-eslint/no-empty-interface": "off",
-    "no-reserved-keys": "off"
+    "no-reserved-keys": "off",
+    "no-restricted-syntax": "off"
   }
 }
-
- 
