@@ -50,8 +50,6 @@ const InfoShopping = (props: { product: any }) => {
           </p>
         </div>
       </div>
-      <div>
-      </div>
     </div>
   </li>
   );
