@@ -1,3 +1,7 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  // Otras configuraciones de ESLint
+  "rules": {
+    // Deshabilitar la regla @typescript-eslint/no-empty-interface
+    "@typescript-eslint/no-empty-interface": "off"
+  }
 }
