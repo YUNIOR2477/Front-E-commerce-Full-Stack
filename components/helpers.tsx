@@ -1,17 +1,13 @@
 import { AxiosResponse } from "axios";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const storeUser = (response: AxiosResponse<any, any>) => {
+export const storeUser = (
+  response: AxiosResponse<{ username: string; jwt: string }>
+) => {
   localStorage.setItem(
     "user",
-    JSON.stringify({
-      username: response.data.username,
-      jwt: response.data.jwt,
-    })
+    JSON.stringify({ username: response.data.username, jwt: response.data.jwt })
   );
 };
-
-export const userData=()=>{
-    const stringFieldUser= localStorage.getItem("user");
-    return JSON.parse(stringFieldUser || "");
-}
+export const userData = () => {
+  const stringFieldUser = localStorage.getItem("user");
+  return stringFieldUser ? JSON.parse(stringFieldUser) : null;
+};

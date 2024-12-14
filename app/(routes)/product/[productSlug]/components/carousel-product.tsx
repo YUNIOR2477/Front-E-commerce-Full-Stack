@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import {
   Carousel,
   CarouselContent,
@@ -6,6 +5,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Image from "next/image";
 import React from "react";
 
 interface CarouselProductProps {
@@ -23,16 +23,18 @@ const CarouselProduct = (props: CarouselProductProps) => {
         <CarouselContent>
           {images.map((image) => (
             <CarouselItem key={image.id}>
-              <img
+              <Image
                 src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.url}`}
                 alt="image product"
                 className="rounded-lg object-cover border-2"
+                width={2000}
+                height={2000}
               />
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="hidden sm:flex md:ml-10"/>
-        <CarouselNext className="hidden sm:flex md:mr-10"/>
+        <CarouselPrevious className="hidden sm:flex md:ml-10" />
+        <CarouselNext className="hidden sm:flex md:mr-10" />
       </Carousel>
     </div>
   );

@@ -1,23 +1,14 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+import { Montserrat } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { ThemeProvider } from "@/components/theme-provider";
 import BannerProducts from "@/components/banner-products";
 import { Toaster } from "@/components/ui/toaster";
 import NextTopLoader from "nextjs-toploader";
+import ThemeProvider from "@/components/theme-provider";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat", weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], });
 
 export const metadata: Metadata = {
   title: "E-commerce",
@@ -32,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased p-2`}
+        className={`${montserrat.variable} antialiased p-2`}
       >
         <ThemeProvider
           attribute="class"
